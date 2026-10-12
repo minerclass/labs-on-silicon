@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Stack | Labs, X, and the chips underneath</title>
+  <meta name="description" content="An interactive schematic of NVIDIA, OpenAI, Anthropic, Google DeepMind, xAI and X, and how a GPU, a Cloud TPU, and Trainium differ.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#panel">Skip to the company notes</a>
+  <header class="top">
+    <div class="wrap brand">
+      <div>
+        <p class="kicker">A public orientation</p>
+        <h1>The <span>Stack</span></h1>
+        <p class="lede">Five institutions sit on three kinds of chip. Pick a company or drag the year. The drawing runs from the thing a person uses down to the machine that multiplies the numbers.</p>
+      </div>
+      <div class="modes" role="group" aria-label="View">
+        <button type="button" id="mode-map" aria-pressed="true">Companies</button>
+        <button type="button" id="mode-chips" aria-pressed="false">Chip differences</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="companies" role="group" aria-label="Companies">
+      <button type="button" data-company="nvidia">NVIDIA</button>
+      <button type="button" data-company="openai">OpenAI</button>
+      <button type="button" data-company="anthropic">Anthropic</button>
+      <button type="button" data-company="google">Google and DeepMind</button>
+      <button type="button" data-company="xai">xAI and X</button>
+    </div>
+
+    <div class="stage">
+      <div>
+        <section class="board map" id="map" aria-label="Company schematic">
+          <p class="legend">
+            <span><i class="swatch"></i>Main path</span>
+            <span><i class="swatch dash"></i>Also uses NVIDIA</span>
+            <span>Dashed boxes are not there yet in the selected year.</span>
+          </p>
+          <div class="stack-scroll">
+            <div class="stack" id="stack">
+              <svg class="wires" id="wires" aria-hidden="true"></svg>
+              <div class="layer">
+                <p class="layer-name">What a person uses</p>
+                <div class="cols">
+                  <button type="button" class="node" data-node="openai-product" data-layer="product" data-company="openai"></button>
+                  <button type="button" class="node" data-node="anthropic-product" data-layer="product" data-company="anthropic"></button>
+                  <button type="button" class="node" data-node="google-product" data-layer="product" data-company="google"></button>
+                  <button type="button" class="node" data-node="xai-product" data-layer="product" data-company="xai"></button>
+                </div>
+              </div>
+              <div class="layer">
+                <p class="layer-name">Who builds the model</p>
+                <div class="cols">
+                  <button type="button" class="node" data-node="openai-lab" data-layer="lab" data-company="openai"></button>
+                  <button type="button" class="node" data-node="anthropic-lab" data-layer="lab" data-company="anthropic"></button>
+                  <button type="button" class="node" data-node="google-lab" data-layer="lab" data-company="google"></button>
+                  <button type="button" class="node" data-node="xai-lab" data-layer="lab" data-company="xai"></button>
+                </div>
+              </div>
+              <div class="layer">
+                <p class="layer-name">Where the machines sit</p>
+                <div class="cols">
+                  <button type="button" class="node" data-node="openai-cloud" data-layer="cloud" data-company="openai"></button>
+                  <button type="button" class="node" data-node="anthropic-cloud" data-layer="cloud" data-company="anthropic"></button>
+                  <button type="button" class="node" data-node="google-cloud" data-layer="cloud" data-company="google"></button>
+                  <button type="button" class="node" data-node="xai-cloud" data-layer="cloud" data-company="xai"></button>
+                </div>
+              </div>
+              <div class="layer">
+                <p class="layer-name">The chip doing the arithmetic</p>
+                <div class="cols three">
+                  <button type="button" class="node" data-node="gpu" data-layer="chip" data-company="nvidia"></button>
+                  <button type="button" class="node" data-node="trainium" data-layer="chip" data-company="anthropic"></button>
+                  <button type="button" class="node" data-node="tpu" data-layer="chip" data-company="google"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="hint">On a phone, swipe the diagram sideways. The lines are redrawn from the boxes, so they stay attached.</p>
+        </section>
+
+        <section class="board chips" id="chips" hidden aria-label="Chip schematics">
+          <p class="lede">Same job: multiply huge grids of numbers. The blocks are roles, not silicon area, speed, or core counts. A school laptop’s neural chip is a different, much smaller machine.</p>
+          <div class="chip-grid">
+            <button type="button" class="chip-btn" data-chip="gpu" aria-pressed="true">
+              <span>NVIDIA GPU</span>
+              <svg class="schematic" viewBox="0 0 320 228" aria-hidden="true">
+                <rect class="box" x="108" y="8" width="104" height="32"></rect>
+                <text x="160" y="29" text-anchor="middle">Host CPU</text>
+                <line class="line" x1="160" y1="40" x2="160" y2="62"></line>
+                <rect class="box" x="16" y="62" width="288" height="154"></rect>
+                <text x="28" y="82">GPU package</text>
+                <rect class="quiet" x="28" y="94" width="150" height="70"></rect>
+                <text x="38" y="124">Parallel cores</text>
+                <text x="38" y="144">graphics and math</text>
+                <rect class="hot" x="190" y="94" width="98" height="32"></rect>
+                <text x="200" y="115">Tensor Cores</text>
+                <rect class="hot" x="190" y="132" width="98" height="32"></rect>
+                <text x="200" y="153">matrix units</text>
+                <rect class="box" x="28" y="176" width="260" height="26"></rect>
+                <text x="38" y="194">High-bandwidth memory</text>
+              </svg>
+            </button>
+            <button type="button" class="chip-btn" data-chip="tpu" aria-pressed="false">
+              <span>Google Cloud TPU</span>
+              <svg class="schematic" viewBox="0 0 320 228" aria-hidden="true">
+                <rect class="box" x="108" y="8" width="104" height="32"></rect>
+                <text x="160" y="29" text-anchor="middle">Host CPU</text>
+                <line class="line" x1="160" y1="40" x2="160" y2="62"></line>
+                <rect class="box" x="16" y="62" width="288" height="154"></rect>
+                <text x="28" y="82">TPU package</text>
+                <g class="hot">
+                  <rect x="28" y="96" width="36" height="22"></rect>
+                  <rect x="70" y="96" width="36" height="22"></rect>
+                  <rect x="112" y="96" width="36" height="22"></rect>
+                  <rect x="154" y="96" width="36" height="22"></rect>
+                  <rect x="28" y="124" width="36" height="22"></rect>
+                  <rect x="70" y="124" width="36" height="22"></rect>
+                  <rect x="112" y="124" width="36" height="22"></rect>
+                  <rect x="154" y="124" width="36" height="22"></rect>
+                </g>
+                <text x="28" y="166">Matrix array, not a graphics chip</text>
+                <rect class="box" x="200" y="96" width="88" height="50"></rect>
+                <text x="210" y="118">On-package</text>
+                <text x="210" y="136">memory</text>
+                <rect class="quiet" x="28" y="178" width="260" height="24"></rect>
+                <text x="38" y="195">Not the Pixel Tensor phone chip</text>
+              </svg>
+            </button>
+            <button type="button" class="chip-btn" data-chip="trainium" aria-pressed="false">
+              <span>AWS Trainium</span>
+              <svg class="schematic" viewBox="0 0 320 228" aria-hidden="true">
+                <rect class="box" x="90" y="8" width="140" height="32"></rect>
+                <text x="160" y="29" text-anchor="middle">Host CPU on AWS</text>
+                <line class="line" x1="160" y1="40" x2="160" y2="62"></line>
+                <text x="168" y="56">Neuron</text>
+                <rect class="box" x="16" y="62" width="200" height="154"></rect>
+                <text x="28" y="82">Trainium</text>
+                <rect class="hot" x="28" y="96" width="176" height="36"></rect>
+                <text x="38" y="118">Training cores</text>
+                <rect class="hot" x="28" y="140" width="176" height="36"></rect>
+                <text x="38" y="162">More training cores</text>
+                <rect class="box" x="28" y="184" width="176" height="22"></rect>
+                <text x="38" y="200">Memory</text>
+                <rect class="quiet" x="228" y="96" width="76" height="70"></rect>
+                <text x="236" y="124">Inferentia</text>
+                <text x="236" y="144">serves</text>
+              </svg>
+            </button>
+          </div>
+          <div class="diff-wrap">
+            <table id="diff">
+              <caption>What actually differs</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col" data-col="gpu">NVIDIA GPU</th>
+                  <th scope="col" data-col="tpu">Google Cloud TPU</th>
+                  <th scope="col" data-col="trainium">AWS Trainium</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Original job</th>
+                  <td data-col="gpu">Draw graphics, then general parallel math.</td>
+                  <td data-col="tpu">Neural-network math in Google’s data centers.</td>
+                  <td data-col="trainium">Train models on AWS. Inferentia is the partner chip that serves answers.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Who designs it</th>
+                  <td data-col="gpu">NVIDIA. Labs buy it or rent it.</td>
+                  <td data-col="tpu">Google. Google uses it and rents it on Google Cloud.</td>
+                  <td data-col="trainium">Amazon. Customers rent it. They do not drop it into a laptop.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Software path</th>
+                  <td data-col="gpu">CUDA, since 2006, and the frameworks built above it.</td>
+                  <td data-col="tpu">Google’s own stack, including JAX and TensorFlow.</td>
+                  <td data-col="trainium">AWS Neuron.</td>
+                </tr>
+                <tr>
+                  <th scope="row">In this map</th>
+                  <td data-col="gpu">The shared floor. OpenAI and xAI stand on it. Anthropic and Google also use it.</td>
+                  <td data-col="tpu">Google DeepMind’s own chip path, beside NVIDIA GPUs on Google Cloud.</td>
+                  <td data-col="trainium">The path Anthropic announced with AWS in 2023, in addition to chips it already used.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fine">Tensor Cores are matrix units inside an NVIDIA GPU. A Cloud TPU is a different company’s accelerator. The Tensor chip in a Pixel phone is a third thing, a mobile system on a chip. The shared word does not mean a shared part.</p>
+        </section>
+      </div>
+
+      <aside class="panel" id="panel" aria-live="polite"></aside>
+    </div>
+
+    <section class="year-dock" aria-label="Timeline">
+      <div class="year-row">
+        <label for="year">Year</label>
+        <input id="year" type="range" min="1993" max="2026" value="2026" step="1">
+        <output id="year-out" for="year">2026</output>
+      </div>
+      <div class="events" id="events"></div>
+    </section>
+
+    <section class="page-sources">
+      <h2>Sources</h2>
+      <p class="fine">Checked October 12, 2026. This is a map of public institutional history, not a product catalog. Model names and private valuations change faster than the drawing.</p>
+      <ul>
+        <li><a href="https://www.nvidia.com/en-gb/about-nvidia/corporate-timeline/">NVIDIA corporate timeline</a></li>
+        <li><a href="https://web.archive.org/web/20170808104802/https://openai.com/blog/introducing-openai/">Introducing OpenAI, December 11, 2015</a></li>
+        <li><a href="https://www.anthropic.com/news/anthropic-raises-124-million-to-build-more-reliable-general-ai-systems">Anthropic’s May 28, 2021 announcement</a></li>
+        <li><a href="https://www.anthropic.com/news/anthropic-amazon">Anthropic on the September 2023 Amazon agreement</a></li>
+        <li><a href="https://blog.google/innovation-and-ai/technology/ai/april-ai-update/">Google on the April 20, 2023 DeepMind combination</a></li>
+        <li><a href="https://arxiv.org/abs/1706.03762">Vaswani and colleagues, Attention Is All You Need (2017)</a></li>
+        <li><a href="https://www.reuters.com/markets/deals/musks-xai-buys-social-media-platform-x-45-billion-2025-03-28/">Reuters, March 28, 2025: xAI acquires X</a></li>
+        <li><a href="https://www.reuters.com/business/musks-spacex-merge-with-xai-combined-valuation-125-trillion-bloomberg-news-2026-02-02/">Reuters, February 2, 2026: SpaceX acquires xAI</a></li>
+        <li><a href="https://www.reuters.com/business/finance/sale-xai-comes-with-tax-financial-legal-benefits-xai-spacex-investors-2026-02-06/">Reuters, February 5, 2026: xAI remains a SpaceX subsidiary</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site wrap">
+    <span>Micah Miner · No analytics · Diagrams are conceptual</span>
+    <a href="https://minerclass.github.io/">Back to the project hub</a>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
