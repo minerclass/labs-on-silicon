@@ -2,7 +2,7 @@
 
 An interactive public map of NVIDIA, OpenAI, Anthropic, Google DeepMind, xAI and X, and the difference between an NVIDIA GPU, a Google Cloud TPU, and AWS Trainium.
 
-The Stack is the short sketch. The fuller map, with every link dated to a company announcement, the 2025 compute announcements, labeled chip schematics, and a local LLM memory lab, is the AI Systems Atlas: https://minerclass.github.io/ai-systems-atlas/
+The Stack is the short sketch. The fuller map, with every link dated to a company announcement, the 2025 compute announcements, labeled chip schematics, a local LLM memory lab, and a station that sets each lab's benchmark claims beside independent runs, is the AI Systems Atlas: https://minerclass.github.io/ai-systems-atlas/
 
 The drawings are conceptual schematics. They are not benchmarks, floor plans, or investment advice. Dates and deal descriptions were checked on October 12, 2026 against company pages and Reuters. Valuations and model names move faster than the map.
 
